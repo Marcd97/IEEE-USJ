@@ -93,7 +93,7 @@ def parse_uid(value):
     Parses a hashed ID and returns the Serial ID
 
     :param str value: Hashed ID
-    :rtype: str
+    :rtype: Uid
     """
     validator = UIDValidator()
     serial_id = validator.decode(value)
@@ -104,7 +104,7 @@ def uid_str(**uid):
     """
     Hashed an ID of type (Prefix, Serial_ID)
 
-    :param dict uid: ID to hash
+    :param uid: ID to hash
     :rtype: str
     """
     validator = UIDValidator()
