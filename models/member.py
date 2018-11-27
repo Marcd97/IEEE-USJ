@@ -32,7 +32,7 @@ class Member(BaseModel, UidModel, IdModel):
     student_id = Column(Boolean, default=False)
     ieee_id = Column(Integer, nullable=True)
 
-    societies = relationship('MemberSocietyAssociation')
+    societies = relationship('MemberSocietyAssociation', cascade='all,delete')
 
     @validates('email')
     def validate_email(self, key, email):

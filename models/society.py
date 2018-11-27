@@ -16,6 +16,8 @@ class Society(BaseModel, UidModel, IdModel):
 
     crud_metadata = ['uid', 'name', 'cost']
 
+    members = relationship('MemberSocietyAssociation', cascade='all,delete')
+
     name = Column(Unicode(255), unique=True)
     cost = Column(Integer, nullable=False)
 
