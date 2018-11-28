@@ -1,6 +1,7 @@
 __all__ = (
     'UIDValueError',
     'ModelFieldError',
+    'ModelValidationError',
 )
 
 
@@ -9,4 +10,8 @@ class UIDValueError(ValueError):
 
 
 class ModelFieldError(Exception):
+    pass
+
+
+class ModelValidationError(Exception):
     pass
