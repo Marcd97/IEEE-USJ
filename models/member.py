@@ -18,10 +18,11 @@ class Member(BaseModel, UidModel, IdModel):
     email_regex = re.compile("[^@]+@[^@]+\.[^@]+")
     phone_regex = re.compile("^[+][0-9]{1,3}\s?[0-9]{1,2}[ -/]?[0-9]{6}$")
 
-    crud_metadata = ['uid', 'full_name', 'major', 'email', 'phone', 'birthday', 'graduation', 'paid',
+    crud_metadata = ['uid', 'first_name', 'last_name', 'major', 'email', 'phone', 'birthday', 'graduation', 'paid',
                      'registered', 'student_id', 'ieee_id']
 
-    full_name = Column(Unicode(255), nullable=False)
+    first_name = Column(Unicode(255), nullable=False)
+    last_name = Column(Unicode(255), nullable=False)
     major = Column(Unicode(255), nullable=True)
     email = Column(Unicode(255), nullable=True)
     phone = Column(Unicode(255), nullable=True)
