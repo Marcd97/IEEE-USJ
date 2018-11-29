@@ -14,12 +14,21 @@ class Society(BaseModel, UidModel, IdModel):
     __tablename__ = 'societies'
     UID_PREFIX = 'SCT'
 
-    crud_metadata = ['uid', 'name', 'cost']
+    crud_metadata = ['uid', 'name', 'cost', 'members']
 
     members = relationship('MemberSocietyAssociation', cascade='all,delete')
 
     name = Column(Unicode(255), unique=True)
     cost = Column(Integer, nullable=False)
+
+    def accept_read_visitor(self, field_names):
+        instance_dict = super(Society, self).accept_read_visitor(field_names)
+        member_mappings = instance_dict.get('members') or list()
+        members = list()
+        for member_mapping in member_mappings:
+            members.append("{} {}".format(member_mapping.member.first_name, member_mapping.member.last_name))
+        instance_dict['members'] = members
+        return instance_dict
 
 
 class MemberSocietyAssociation(BaseModel):
