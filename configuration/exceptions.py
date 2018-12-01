@@ -4,6 +4,7 @@ __all__ = (
     'ModelValidationError',
     'EmailValidationError',
     'PhoneValidationError',
+    'ForcedBalanceError',
 )
 
 
@@ -24,4 +25,8 @@ class EmailValidationError(Exception):
 
 
 class PhoneValidationError(Exception):
+    pass
+
+
+class ForcedBalanceError(Exception):
     pass
