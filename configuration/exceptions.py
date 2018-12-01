@@ -2,6 +2,8 @@ __all__ = (
     'UIDValueError',
     'ModelFieldError',
     'ModelValidationError',
+    'EmailValidationError',
+    'PhoneValidationError',
 )
 
 
@@ -14,4 +16,12 @@ class ModelFieldError(Exception):
 
 
 class ModelValidationError(Exception):
+    pass
+
+
+class EmailValidationError(Exception):
+    pass
+
+
+class PhoneValidationError(Exception):
     pass

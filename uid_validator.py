@@ -16,7 +16,7 @@ class Prefix(StrEnums):
 class UIDValidator:
     VALID_PREFIXES = dict(
         DFT=0x00,  # Default
-        MMB=0x5A,  # Member
+        MBR=0x5A,  # Member
         USR=0x71,  # User
         TRS=0xE3,  # Transaction
         EVT=0xF1,  # Event
