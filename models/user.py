@@ -1,3 +1,7 @@
+__all__ = (
+    'User',
+)
+
 from sqlalchemy import Column, Unicode
 from sqlalchemy.orm import validates
 

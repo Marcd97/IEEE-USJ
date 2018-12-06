@@ -1,3 +1,8 @@
+__all__ = (
+    'Meeting',
+    'UserMeetingAssociation',
+)
+
 from sqlalchemy import Column, Unicode, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship
 

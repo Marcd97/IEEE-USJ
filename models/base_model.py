@@ -7,6 +7,10 @@ from configuration import ModelFieldError
 
 
 class BaseModel(Base):
+    """
+    The class that will serve as Base for all the models. Contains the super methods for the read and write visitors.
+    """
+
     __abstract__ = True
 
     @classmethod

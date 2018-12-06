@@ -1,3 +1,8 @@
+__all__ = (
+    'UidModel',
+    'IdModel',
+)
+
 from sqlalchemy import Integer, Column
 from sqlalchemy.ext.declarative import declared_attr
 
