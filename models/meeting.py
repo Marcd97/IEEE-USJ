@@ -49,7 +49,8 @@ class Meeting(UidModel, IdModel, BaseModel):
 
 class UserMeetingAssociation(BaseModel):
     __tablename__ = 'user_meeting_assoc'
-    meeting_id = Column(Integer, ForeignKey('meeting.id', ondelete='CASCADE'), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    meeting_id = Column(Integer, ForeignKey('meetings.id', ondelete='CASCADE'), primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id', ondelete='CASCADE'), primary_key=True)
+
     user = relationship('User')
     meeting = relationship('Meeting')
