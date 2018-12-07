@@ -31,3 +31,4 @@ class Transaction(BaseModel, UidModel, IdModel):
         super(Transaction, self).accept_write_visitor(body)
         old_balance = Transaction.find(self.id-1).balance
         self.balance = old_balance + self.amount
+        return self
