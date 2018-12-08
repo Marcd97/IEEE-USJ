@@ -1,5 +1,6 @@
 from flask import request, jsonify
 
+from helper import as_dict
 from helper.simple_helper import SimpleCrudHandler
 from models.meeting import Meeting
 
@@ -13,12 +14,12 @@ class MeetingApiExtension:
 
     @staticmethod
     def init_app(app):
-        app.add_url_rule('/path/meetings/', 'create_meeting', create_meeting, methods=['POST'])
-        app.add_url_rule('/path/meetings/<meeting_uid>', 'read_meeting', read_meeting, methods=['GET'])
-        app.add_url_rule('/path/meetings/<meeting_uid>', 'update_meeting', update_meeting, methods=['PUT'])
-        app.add_url_rule('/path/meetings/<meeting_uid>', 'delete_meeting', delete_meeting, methods=['DELETE'])
-        app.add_url_rule('/path/meetings/', 'search_meeting', search_meeting, methods=['GET'])
-        app.add_url_rule('/path/meetings/', 'bulk_update_meeting', bulk_update_meeting, methods=['PUT'])
+        app.add_url_rule('/meetings', 'create_meeting', create_meeting, methods=['POST'])
+        app.add_url_rule('/meetings/<meeting_uid>', 'read_meeting', read_meeting, methods=['GET'])
+        app.add_url_rule('/meetings/<meeting_uid>', 'update_meeting', update_meeting, methods=['PUT'])
+        app.add_url_rule('/meetings/<meeting_uid>', 'delete_meeting', delete_meeting, methods=['DELETE'])
+        app.add_url_rule('/meetings', 'search_meeting', search_meeting, methods=['GET'])
+        app.add_url_rule('/meetings', 'bulk_update_meeting', bulk_update_meeting, methods=['PUT'])
 
 
 def create_meeting():
@@ -44,7 +45,7 @@ def delete_meeting(meeting_uid):
 
 
 def search_meeting():
-    filters = dict(request.args)
+    filters = as_dict(request.args)
     jsonable_dict, code = handler.search(filters)
     return jsonify(jsonable_dict), code
 
