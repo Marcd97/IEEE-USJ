@@ -14,6 +14,8 @@ class User(UidModel, IdModel, BaseModel):
     __tablename__ = 'users'
     UID_PREFIX = 'USR'
 
+    crud_metadata = ['email', 'username', 'phone_number', 'first_name', 'last_name', 'uid']
+
     email = Column(Unicode(255), nullable=True)
     username = Column(Unicode(255), nullable=False)
     phone_number = Column(Unicode(255), nullable=True)
