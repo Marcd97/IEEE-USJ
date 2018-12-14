@@ -4,3 +4,4 @@ from .member import *
 from .society import *
 from .transaction import *
 from .user import *
+from .notification import *
