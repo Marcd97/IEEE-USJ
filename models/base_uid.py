@@ -69,7 +69,7 @@ class UidModel:
         pkey_value = uid.serial_id if uid is not None else None
         if pkey_value is None:
             return None
-        return cls.query.get_or_404(pkey_value)
+        return cls.query.get(pkey_value)
 
 
 class IdModel(id_with_sequence()):
