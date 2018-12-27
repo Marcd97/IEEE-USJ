@@ -22,6 +22,7 @@ class UIDValidator:
         EVT=0xF1,  # Event
         MTG=0x17,  # Meeting
         SCT=0x9E,  # Society
+        NTF=0x8A,  # Notification
     )
 
     UID_REGEX = re.compile('^([A-Z]{3})_([a-zA-Z0-9]+)?$')  # Regular expression defining the UID

@@ -1,10 +1,10 @@
 from flask import request, jsonify
 
 from helper import as_dict
-from helper.simple_helper import SimpleCrudHandler
+from helper.notification_helper import NotificationCrudHandler
 from models.user import User
 
-handler = SimpleCrudHandler(User)
+handler = NotificationCrudHandler(User)
 
 
 class UserApiExtension:
@@ -20,6 +20,8 @@ class UserApiExtension:
         app.add_url_rule('/users/<user_uid>', 'delete_user', delete_user, methods=['DELETE'])
         app.add_url_rule('/users', 'search_user', search_user, methods=['GET'])
         app.add_url_rule('/users', 'bulk_update_user', bulk_update_user, methods=['PUT'])
+        app.add_url_rule('/users/<user_uid>/notifications', 'get_user_notification', get_user_notification,
+                         methods=['GET'])
 
 
 def create_user():
@@ -53,4 +55,10 @@ def search_user():
 def bulk_update_user():
     body = request.json
     jsonable_dict, code = handler.bulk_update(body)
+    return jsonify(jsonable_dict), code
+
+
+# TODO Protect this resource
+def get_user_notification(user_uid):
+    jsonable_dict, code = handler.notification(user_uid)
     return jsonify(jsonable_dict), code
