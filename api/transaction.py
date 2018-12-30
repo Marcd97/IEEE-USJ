@@ -1,5 +1,6 @@
 from flask import request, jsonify
 
+from app_config.app_config import policy_enforcer
 from helper.simple_helper import SimpleCrudHandler
 from models.transaction import Transaction
 
@@ -21,34 +22,40 @@ class TransactionApiExtension:
         app.add_url_rule('/transactions', 'bulk_update_transaction', bulk_update_transaction, methods=['PUT'])
 
 
+@policy_enforcer.protected
 def create_transaction():
     body = request.json
     jsonable_dict, code = handler.create(body)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def read_transaction(transaction_uid):
     jsonable_dict, code = handler.read(transaction_uid)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def update_transaction(transaction_uid):
     body = request.json
     jsonable_dict, code = handler.update(transaction_uid, body)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def delete_transaction(transaction_uid):
     jsonable_dict, code = handler.delete(transaction_uid)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def search_transaction():
     filters = dict(request.args)
     jsonable_dict, code = handler.search(filters)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def bulk_update_transaction():
     body = request.json
     jsonable_dict, code = handler.bulk_update(body)

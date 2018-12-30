@@ -1,10 +1,10 @@
 from flask import request, jsonify
 
 from helper import as_dict
-from helper.notification_helper import NotificationCrudHandler
+from helper.user_helper import UserCrudHandler
 from models.user import User
 
-handler = NotificationCrudHandler(User)
+handler = UserCrudHandler(User)
 
 
 class UserApiExtension:

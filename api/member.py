@@ -1,3 +1,4 @@
+from app_config.app_config import policy_enforcer
 from helper import as_dict
 
 __all__ = (
@@ -27,34 +28,40 @@ class MemberApiExtension:
         app.add_url_rule('/members', 'bulk_update_member', bulk_update_member, methods=['PUT'])
 
 
+@policy_enforcer.protected
 def create_member():
     body = request.json
     jsonable_dict, code = handler.create(body)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def read_member(member_uid):
     jsonable_dict, code = handler.read(member_uid)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def update_member(member_uid):
     body = request.json
     jsonable_dict, code = handler.update(member_uid, body)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def delete_member(member_uid):
     jsonable_dict, code = handler.delete(member_uid)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def search_member():
     filters = as_dict(request.args)
     jsonable_dict, code = handler.search(filters)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def bulk_update_member():
     body = request.json
     jsonable_dict, code = handler.bulk_update(body)

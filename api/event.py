@@ -1,5 +1,6 @@
 from flask import request, jsonify
 
+from app_config.app_config import policy_enforcer
 from helper.simple_helper import SimpleCrudHandler
 from models.event import Event
 
@@ -21,34 +22,40 @@ class EventApiExtension:
         app.add_url_rule('/events', 'bulk_update_event', bulk_update_event, methods=['PUT'])
 
 
+@policy_enforcer.protected
 def create_event():
     body = request.json
     jsonable_dict, code = handler.create(body)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def read_event(event_uid):
     jsonable_dict, code = handler.read(event_uid)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def update_event(event_uid):
     body = request.json
     jsonable_dict, code = handler.update(event_uid, body)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def delete_event(event_uid):
     jsonable_dict, code = handler.delete(event_uid)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def search_event():
     filters = dict(request.args)
     jsonable_dict, code = handler.search(filters)
     return jsonify(jsonable_dict), code
 
 
+@policy_enforcer.protected
 def bulk_update_event():
     body = request.json
     jsonable_dict, code = handler.bulk_update(body)
