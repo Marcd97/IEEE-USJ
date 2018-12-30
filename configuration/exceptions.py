@@ -5,6 +5,7 @@ __all__ = (
     'EmailValidationError',
     'PhoneValidationError',
     'ForcedBalanceError',
+    'KeyCloakMigrationError'
 )
 
 
@@ -29,4 +30,8 @@ class PhoneValidationError(Exception):
 
 
 class ForcedBalanceError(Exception):
+    pass
+
+
+class KeyCloakMigrationError(Exception):
     pass

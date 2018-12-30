@@ -1,0 +1,16 @@
+{
+  "realm": "IEEE_USJ",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "IEEE_Resource_Server",
+  "credentials": {
+    "secret": "2745e888-5551-40f9-bd32-a6e7f03395ea"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {
+    "paths": [],
+    "enforcement-mode": "ENFORCING",
+    "on-deny-redirect-to": null,
+    "user-managed-access": null
+  }
+}
