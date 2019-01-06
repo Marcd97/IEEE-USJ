@@ -57,10 +57,10 @@ class CrudHelper:
         query = query.filter_by(**filters)
 
         all_results = query.all()
-        all_dicts = dict()
+        all_dicts = []
         for instance in all_results:
             result = self.read_visitor.visit_model(instance)
-            all_dicts[result['uid']] = result
+            all_dicts.append(result)
         return all_dicts, 200
 
     def delete_helper(self, uid_str):
