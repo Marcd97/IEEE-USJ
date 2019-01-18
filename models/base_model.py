@@ -24,6 +24,7 @@ class BaseModel(Base):
         return instance
 
     def accept_write_visitor(self, body):
+        body.pop('uid', None)
         for name in body:
             try:
                 getattr(self, name)

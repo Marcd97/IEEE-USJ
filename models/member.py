@@ -28,6 +28,7 @@ class Member(BaseModel, UidModel, IdModel):
     birthday = Column(Date, nullable=True)
     graduation = Column(Integer, nullable=True)
     paid = Column(Boolean, default=False)
+    balance = Column(Boolean, default=0)
     registered = Column(Boolean, default=False)
     student_id = Column(Boolean, default=False)
     ieee_id = Column(Integer, nullable=True)
@@ -61,6 +62,6 @@ class Member(BaseModel, UidModel, IdModel):
         society_mappings = instance_dict.get('societies') or list()
         societies = list()
         for society_mapping in society_mappings:
-            societies.append(society_mapping.society.name)
+            societies.append(society_mapping.society.uid)
         instance_dict['societies'] = societies
         return instance_dict

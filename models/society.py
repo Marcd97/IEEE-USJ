@@ -26,7 +26,7 @@ class Society(BaseModel, UidModel, IdModel):
         member_mappings = instance_dict.get('members') or list()
         members = list()
         for member_mapping in member_mappings:
-            members.append("{} {}".format(member_mapping.member.first_name, member_mapping.member.last_name))
+            members.append(member_mapping.member.uid)
         instance_dict['members'] = members
         return instance_dict
 
